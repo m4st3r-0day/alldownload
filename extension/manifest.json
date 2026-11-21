@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Manda ad AllDownload",
+  "version": "1.0",
+  "description": "Manda la pagina o un link ad AllDownload con un clic.",
+  "permissions": ["contextMenus", "activeTab"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "Manda ad AllDownload", "default_icon": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" } },
+  "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" }
+}

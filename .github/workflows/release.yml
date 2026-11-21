@@ -1,0 +1,122 @@
+# Quando carichi un tag vX.Y.Z (lo fa «Pubblica nuova versione.command») GitHub:
+#  1. crea AllDownload.app (Mac, Apple Silicon) e AllDownload.exe (Windows);
+#  2. calcola SHA256SUMS;
+#  3. li mette nella Release della versione, con le novità prese da CHANGELOG.md.
+# L'app li trova da sola (AllDownload → Controlla aggiornamenti) e controlla lo SHA-256 prima di installare.
+name: Release
+
+on:
+  push:
+    tags: ["v*.*.*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag da ricostruire (es. v0.2.0)"
+        required: true
+
+permissions:
+  contents: write
+
+env:
+  TAG: ${{ github.event.inputs.tag || github.ref_name }}
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            asset: AllDownload-mac.zip
+          - os: windows-latest
+            asset: AllDownload-windows.zip
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Librerie
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . "pyinstaller>=6.6" pillow pytest
+
+      - name: Test
+        run: python -m pytest -q --ignore=tests/test_browser.py
+        env:
+          QT_QPA_PLATFORM: offscreen
+
+      - name: Versione giusta
+        shell: bash
+        run: |
+          V=$(python -c "import picfinder; print(picfinder.__version__)")
+          [ "v$V" = "$TAG" ] || { echo "Il tag $TAG non corrisponde a __version__ $V"; exit 1; }
+          echo "VER=$V" >> "$GITHUB_ENV"
+
+      - name: PyInstaller
+        shell: bash
+        run: |
+          ICON=packaging/AllDownload.png
+          [ "$RUNNER_OS" = "macOS" ] && ICON=packaging/AllDownload.icns
+          pyinstaller --noconfirm --clean --windowed --name AllDownload \
+            --icon "$ICON" \
+            --osx-bundle-identifier com.alldownload.app \
+            --add-data "picfinder/templates:picfinder/templates" \
+            --add-data "extension:extension" \
+            --collect-submodules picfinder \
+            --hidden-import PySide6.QtSvg \
+            --hidden-import PySide6.QtWebEngineWidgets \
+            --hidden-import PySide6.QtWebEngineCore \
+            --log-level WARN \
+            packaging/app_main.py
+
+      - name: Pacchetto Mac
+        if: runner.os == 'macOS'
+        run: |
+          bash packaging/mac_finish.sh dist/AllDownload.app "$VER"
+          ditto -c -k --sequesterRsrc --keepParent dist/AllDownload.app "${{ matrix.asset }}"
+
+      - name: Pacchetto Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: Compress-Archive -Path dist/AllDownload -DestinationPath "${{ matrix.asset }}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.asset }}
+          path: ${{ matrix.asset }}
+          retention-days: 7
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: out
+          merge-multiple: true
+
+      - name: SHA256SUMS e note
+        run: |
+          cd out && sha256sum * > SHA256SUMS && cat SHA256SUMS && cd ..
+          V="${TAG#v}"
+          awk -v v="$V" '$0 ~ "^## \\[" v "\\]" {f=1;next} /^## /{f=0} f' CHANGELOG.md > notes.md
+          [ -s notes.md ] || echo "AllDownload $V" > notes.md
+
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" out/* --clobber
+          else
+            gh release create "$TAG" out/* --title "AllDownload ${TAG#v}" --notes-file notes.md
+          fi

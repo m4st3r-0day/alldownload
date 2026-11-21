@@ -1,0 +1,7 @@
+<html><body><div id="c">caricamento</div>
+<script>
+fetch('/api/data.json?page=1', {headers: {'Authorization': 'Bearer SEGRETO', 'X-Website-Token': 'WT1'}})
+  .then(r => r.json()).then(j => { document.getElementById('c').innerHTML = '<a href="/files/' + j.file + '">file</a>'; });
+var x = new XMLHttpRequest(); x.open('POST', '/api/data.json?x=2'); x.setRequestHeader('sign', 'FIRMA'); x.send('{"id":5}');
+document.cookie = "sessione=abc123; path=/";
+</script></body></html>
