@@ -23,7 +23,7 @@ ACCEPTS_SESSION = True
 NEEDS_BROWSER = True
 BROWSER_MESSAGE = "Se te lo chiede, dimostra di essere una persona, poi premi «Continua download»."
 BROWSER_USEFUL = r"filester\.[^/]+/(v2/)?api/"
-TESTED = ""
+TESTED = "2026-11"
 DELAY = (3.0, 5.0)
 
 _RE = re.compile(r"^https?://(?:www\.)?(filester\.[a-z]+)/(f|d)/([^/?#]+)", re.I)

@@ -65,11 +65,11 @@
 | Service | What | Status (all Python plugins) |
 |---|---|---|
 | **Bunkr** | albums and single files, photos and videos | ✅ tested Nov 2026 (signed download links; album photos come from the gallery list) |
-| **filester** | folders, subfolders and single files | new plugin, to be retested |
-| **OnlyFans** | profile media **and** chats (unlocked photos and videos) | new plugin, to be retested — read [how to use it](#onlyfans-and-fansly) |
+| **filester** | folders, subfolders and single files | ✅ tested Nov 2026 |
+| **OnlyFans** | profile media **and** chats (unlocked photos and videos) | ✅ tested Nov 2026 — read [how to use it](#onlyfans-and-fansly) |
 | Fansly | media | your own account, to be tested |
 | **Koofr** | shared links (also `k00.fr` short links), with password | ✅ tested Nov 2026 — the folder takes the shared link's name |
-| pixeldrain | files and lists | API, to be tested |
+| **pixeldrain** | files and lists | ✅ tested Nov 2026 (API) |
 | **Gofile** | folders and subfolders | ✅ tested Nov 2026 — uses the built-in browser (guest access) |
 | ImageFap | galleries, categories | to be tested |
 | Tumblr | blogs | to be tested |

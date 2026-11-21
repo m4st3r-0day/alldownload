@@ -26,7 +26,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: macos-14
+          - os: macos-15        # macos-14 non c'è più su GitHub dal 2 novembre 2026
             asset: AllDownload-mac.zip
           - os: windows-latest
             asset: AllDownload-windows.zip

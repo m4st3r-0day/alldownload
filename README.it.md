@@ -65,11 +65,11 @@
 | Servizio | Cosa | Stato (tutti plugin Python) |
 |---|---|---|
 | **Bunkr** | album e file singoli, foto e video | ✅ provato a novembre 2026 (link firmati; le foto degli album arrivano dall'elenco «gallery») |
-| **filester** | cartelle, sottocartelle e file singoli | plugin nuovo, da riprovare |
-| **OnlyFans** | media del profilo **e** chat (foto e video sbloccati) | plugin nuovo, da riprovare — leggi [come si usa](#onlyfans-e-fansly) |
+| **filester** | cartelle, sottocartelle e file singoli | ✅ provato a novembre 2026 |
+| **OnlyFans** | media del profilo **e** chat (foto e video sbloccati) | ✅ provato a novembre 2026 — leggi [come si usa](#onlyfans-e-fansly) |
 | Fansly | media | solo il tuo account, da provare |
 | **Koofr** | link condivisi (anche i link brevi `k00.fr`), con password | ✅ provato a novembre 2026 — la cartella prende il nome del link condiviso |
-| pixeldrain | file e liste | API, da provare |
+| **pixeldrain** | file e liste | ✅ provato a novembre 2026 (API) |
 | **Gofile** | cartelle e sottocartelle | ✅ provato a novembre 2026 — usa il browser interno (accesso ospite) |
 | ImageFap | gallerie, categorie | da provare |
 | Tumblr | blog | da provare |

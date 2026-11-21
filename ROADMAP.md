@@ -14,10 +14,10 @@ I file `.etmpl` restano supportati: chi li ha li importa da solo, ma noi non li 
 - [x] Koofr → plugin Python (cartella col nome del link condiviso)
 - [x] pixeldrain → plugin Python (API)
 - [x] Bunkr → plugin Python (album + file, API `_001_v2` + firma `/sign`; elenco «gallery» per le foto)
-- [~] filester → plugin Python (cartelle con `onclick`, API `/v2/api/public/download`)
+- [x] filester → plugin Python (cartelle con `onclick`, API `/v2/api/public/download`)
 - [x] Gofile → plugin Python (API `contents`, token ospite → cookie `accountToken`)
-- [~] OnlyFans profilo (media) → plugin Python (con la sessione del browser interno)
-- [~] OnlyFans chat (galleria, foto e video sbloccati) → plugin Python
+- [x] OnlyFans profilo (media) → plugin Python (con la sessione del browser interno)
+- [x] OnlyFans chat (galleria, foto e video sbloccati) → plugin Python
 - [~] Fansly → plugin Python
 - [~] ImageFap (galleria e categoria) → plugin Python
 - [~] Tumblr → plugin Python
@@ -41,7 +41,7 @@ I file `.etmpl` restano supportati: chi li ha li importa da solo, ma noi non li 
 ## 3. Problemi aperti
 
 - [ ] Bunkr: i video richiedono ancora la pagina di ogni file (l'elenco «gallery» dà solo le foto) → strada veloce per le foto negli album misti (serve un album di prova con foto e video)
-- [ ] Provare davvero filester, OnlyFans, Fansly, pixeldrain, ImageFap, Tumblr, jliji, av01, X e segnarli «Supportato, provato»
+- [ ] Provare davvero Fansly, ImageFap, Tumblr, jliji, av01, X e segnarli «Supportato, provato»
 - [x] Repo privato: l'aggiornamento automatico vuole un token GitHub → istruzioni guidate dentro l'app (apre GitHub con i campi pronti)
 - [x] Cambio lingua e tema: subito, senza riavviare
 

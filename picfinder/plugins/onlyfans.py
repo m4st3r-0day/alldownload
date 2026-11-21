@@ -27,7 +27,7 @@ NEEDS_BROWSER = True
 BROWSER_MESSAGE = ("Fai login. Poi scorri la pagina (Media del profilo o galleria della chat) fino in fondo, "
                    "così si caricano tutti i contenuti, e premi «Continua download».")
 BROWSER_USEFUL = r"onlyfans\.com/api2/v2/(users/\d+/(posts|medias?)|chats/\d+/(media|messages))"
-TESTED = ""
+TESTED = "2026-11"
 DELAY = (3.0, 5.0)
 
 _PROFILE = re.compile(r"^https?://(?:www\.)?onlyfans\.com/(?!my/|api2/)([A-Za-z0-9_.-]+)(?:/(media|photos|videos|posts))?/?(?:[?#].*)?$", re.I)

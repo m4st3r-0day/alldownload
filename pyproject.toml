@@ -1,6 +1,6 @@
 [project]
 name = "picfinder"
-version = "0.3.0"
+version = "0.4.0"
 description = "AllDownload: download photos and videos from shared links and galleries (Python plugins, also reads .etmpl templates)"
 license = { text = "MIT" }
 readme = "README.md"

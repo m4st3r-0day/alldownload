@@ -2020,6 +2020,11 @@ def main() -> int:
     # niente messaggi «js: …» delle pagine web nel Terminale (sono errori dei siti, non dell'app;
     # quelli utili finiscono già nel registro) e niente avvisi sui caratteri
     rules = os.environ.get("QT_LOGGING_RULES", "")
+    # niente righe «ERROR … FIDO/Bluetooth» e «stun… -105» di Chromium nel Terminale: sono messaggi interni
+    # del browser (chiavi di sicurezza, WebRTC), non errori dell'app
+    flags = os.environ.get("QTWEBENGINE_CHROMIUM_FLAGS", "")
+    if "--log-level" not in flags:
+        os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = (flags + " --log-level=3").strip()
     os.environ["QT_LOGGING_RULES"] = ";".join(x for x in (rules, "js=false", "js.*=false", "qt.qpa.fonts=false",
                                                                   "qt.accessibility.table=false") if x)
     from PySide6.QtCore import QCoreApplication

@@ -2,6 +2,13 @@
 
 All notable changes are listed here. Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.4.0] — 2026-11-21
+
+### Cambiato
+- OnlyFans (profilo e chat), filester e pixeldrain: provati sul sito vero → «Supportato, provato».
+- Niente più messaggi interni di Chromium nel Terminale (FIDO/Bluetooth, `stun… -105`).
+- GitHub Actions: Mac su `macos-15` (l'immagine `macos-14` è stata ritirata da GitHub il 2 novembre 2026).
+
 ## [0.3.0] — 2026-11-21
 
 ### Nuovo

@@ -19,7 +19,8 @@ from ..core import PluginError, RemoteFile
 from ..logs import log
 
 NAME = "pixeldrain (API)"
-PREFERRED = True   # ha la precedenza sul template .etmpl di pixeldrain
+PREFERRED = True   # ha la precedenza su un template .etmpl di pixeldrain
+TESTED = "2026-11"
 
 _RE = re.compile(r"^https?://(?:www\.)?(pixeldrain\.(?:com|net)|pixeldra\.in)/(l|u)/([A-Za-z0-9]+)", re.I)
 
